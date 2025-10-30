@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'screens/home_page.dart'; 
 import 'screens/tracking_requests.dart';
+import 'screens/online_request_page.dart';
+import 'screens/required_documents_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,10 +21,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF9FAFB),
         fontFamily: 'Cairo',
       ),
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
-        '/': (context) => const RequestTrackingScreen(),
+        '/home': (context) => const HomePage(), // Your home page
         '/tracking': (context) => const RequestTrackingScreen(),
+        '/online-request': (context) => const OnlineRequestPage(),
+        '/required-documents': (context) => const RequiredDocumentsPage(),
       },
     );
   }
