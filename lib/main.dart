@@ -27,8 +27,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomePage(), // Your home page
         '/tracking': (context) => const RequestTrackingScreen(),
-        '/online-request': (context) => const OnlineRequestPage(),
         '/required-documents': (context) => const RequiredDocumentsPage(),
+        '/booking': (context) => const BookingPage(),
+        '/digital-versions': (context) => const DigitalVersionsPage(),
+        '/online-requests': (context) => const OnlineRequestsPage(),
       },
     );
   }
