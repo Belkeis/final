@@ -17,7 +17,7 @@ class _BookingCalendarScreenState extends State<BookingCalendarScreen> {
 
   int? selectedDate;
 
-  final List<String> weekDays = ['ح', 'إ', 'ث', 'أ', 'خ', 'ج', 'س'];
+  final List<String> weekDays = [ 'خ', 'ج', 'س','ح', 'إ', 'ث', 'أ'];
 
   @override
   Widget build(BuildContext context) {
@@ -138,9 +138,8 @@ class _BookingCalendarScreenState extends State<BookingCalendarScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
 
-                  // Legend (vertical)
                   // Legend (vertical)
                   Align(
                     alignment: Alignment.centerRight,

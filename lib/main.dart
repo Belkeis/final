@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomePage(),
         '/tracking': (context) => const RequestTrackingScreen(),
-        '/required-documents': (context) => const RequiredDocumentsPage(),
-        '/required-documents-passport': (context) =>
+        '/required-documents-passport': (context) => const RequiredDocumentsPassportPage(),
+        '/required-documents': (context) =>
             const MyRequiredDocumentsPage(),
         '/booking': (context) => const BookingPage(),
         '/digital-versions': (context) => const DigitalVersionsPage(),
