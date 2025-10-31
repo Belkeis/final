@@ -3,6 +3,8 @@ import 'screens/home_page.dart';
 import 'screens/tracking_requests.dart';
 import 'screens/online_request_page.dart';
 import 'screens/required_documents_page.dart';
+import 'screens/booking_page.dart';
+import 'screens/digital_versions_page.dart';
 
 void main() {
   runApp(const MyApp());
