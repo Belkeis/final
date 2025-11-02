@@ -10,18 +10,23 @@ class BookingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl, // Page stays RTL
+      textDirection: TextDirection.rtl,
       child: Scaffold(
-        // CustomAppBar 
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: CustomAppBar(
-              onArrowTap: () {
-                Navigator.pop(context);
-              },
-            ),
+          child: CustomAppBar(
+            title: 'احجز موعدك',
+            onArrowTap: () => Navigator.pop(context),
+            onProfileTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Profile tapped')),
+              );
+            },
+            onNotificationTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Notifications tapped')),
+              );
+            },
           ),
         ),
         body: SingleChildScrollView(
@@ -29,7 +34,7 @@ class BookingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //  Circle Icon
+              // Circle Icon
               Container(
                 width: 80,
                 height: 80,
@@ -45,9 +50,7 @@ class BookingPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 15),
-
               const Text(
                 'احجز موعدك',
                 style: TextStyle(
@@ -56,9 +59,7 @@ class BookingPage extends StatelessWidget {
                   fontFamily: 'Cairo',
                 ),
               ),
-
               const SizedBox(height: 5),
-
               Text(
                 'اختر نوع الخدمة المطلوبة',
                 style: TextStyle(
@@ -67,9 +68,7 @@ class BookingPage extends StatelessWidget {
                   fontFamily: 'Cairo',
                 ),
               ),
-
               const SizedBox(height: 30),
-
               const Align(
                 alignment: Alignment.centerRight,
                 child: Text(
@@ -81,17 +80,15 @@ class BookingPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
 
-              //  Service Cards
+              // Service Cards
               ServiceCard(
                 icon: Icons.credit_card,
                 iconColor: const Color(0xFF4CAF50),
                 title: 'الحالة المدنية',
                 subtitle: 'استخراج وثائق الحالة المدنية',
                 onTap: () {
-                  // Navigate to MyRequiredDocumentsPage
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -107,7 +104,7 @@ class BookingPage extends StatelessWidget {
                 title: 'المصالح البيومترية',
                 subtitle: 'خدمات البصمة والبيانات البيومترية',
                 onTap: () {
-                  // Optional: add action
+                  // 
                 },
               ),
               const SizedBox(height: 10),
@@ -121,7 +118,6 @@ class BookingPage extends StatelessWidget {
                 title: 'الاستلام',
                 subtitle: 'استلام الوثائق الجاهزة',
                 onTap: () {
-                  // Navigate to BookingCalendarScreen
                   Navigator.push(
                     context,
                     MaterialPageRoute(
