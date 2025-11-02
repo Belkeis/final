@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/custom_app_bar.dart';
-import 'MyRequiredDocumentsPage.dart'; 
+import 'booking_calendar_screen.dart';
 
 class BookingPage extends StatelessWidget {
   const BookingPage({super.key});
@@ -15,7 +15,7 @@ class BookingPage extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Directionality(
-            textDirection: TextDirection.ltr, // Swap positions: icons left, arrow right
+            textDirection: TextDirection.ltr,
             child: CustomAppBar(
               onArrowTap: () {
                 Navigator.pop(context);
@@ -83,13 +83,14 @@ class BookingPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // 🧾 Service Cards
+              //  Service Cards
               ServiceCard(
                 icon: Icons.credit_card,
                 iconColor: const Color(0xFF4CAF50),
                 title: 'الحالة المدنية',
                 subtitle: 'استخراج وثائق الحالة المدنية',
                 onTap: () {
+                  // Navigate to MyRequiredDocumentsPage
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -105,7 +106,7 @@ class BookingPage extends StatelessWidget {
                 title: 'المصالح البيومترية',
                 subtitle: 'خدمات البصمة والبيانات البيومترية',
                 onTap: () {
-                  // Optional: add navigation or action
+                  // Optional: add action
                 },
               ),
               const SizedBox(height: 10),
@@ -119,7 +120,13 @@ class BookingPage extends StatelessWidget {
                 title: 'الاستلام',
                 subtitle: 'استلام الوثائق الجاهزة',
                 onTap: () {
-                  // Optional: add navigation or action
+                  // Navigate to BookingCalendarScreen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const BookingCalendarScreen(),
+                    ),
+                  );
                 },
               ),
             ],
@@ -136,7 +143,7 @@ class ServiceCard extends StatelessWidget {
   final Color iconColor;
   final String title;
   final String subtitle;
-  final VoidCallback? onTap; // <-- added
+  final VoidCallback? onTap;
 
   const ServiceCard({
     super.key,
