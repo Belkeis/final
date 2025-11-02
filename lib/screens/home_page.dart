@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'MyRequiredDocumentsPage.dart';
-<<<<<<< Updated upstream
-import 'tracking_requests.dart';
-=======
 import 'MyOnlineRequestsPage.dart';
 import 'profile.dart'; // Add this import
 import 'notifications_page.dart'; // Add this import
->>>>>>> Stashed changes
+import 'tracking_requests.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -207,7 +204,8 @@ class HomePage extends StatelessWidget {
                             () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const RequestTrackingScreen(),
+                                builder: (context) =>
+                                    const RequestTrackingScreen(),
                               ),
                             ),
                           ),
