@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'home_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -8,9 +10,10 @@ class ProfilePage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF9FAFB),
+        //  AppBar 
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(76),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFF2563EB),
@@ -32,7 +35,7 @@ class ProfilePage extends StatelessWidget {
                       color: Colors.white,
                       fontFamily: 'Cairo',
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
@@ -45,17 +48,25 @@ class ProfilePage extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Cairo',
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
 
-                // Arrow on RIGHT pointing right
+                  // Arrow on RIGHT pointing right
                 Align(
                   alignment: Alignment.centerRight,
                   child: InkWell(
-                    onTap: () => Navigator.pop(context),
+                    onTap: () {
+                      // Navigate to HomePage 
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                      );
+                    },
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -68,28 +79,30 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
 
+
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               //  User Picture
               CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/images/person.jpg'),
+                backgroundImage: AssetImage('assets/images/user.png'),
               ),
               const SizedBox(height: 12),
 
-              // User Name
+              //  User Name
               const Text(
                 'اسم المستخدم',
                 style: TextStyle(
                   fontFamily: 'Cairo',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
+                  color: Color(0xFF111827),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 40),
 
               //  Personal Details Section
               const Align(
@@ -99,18 +112,26 @@ class ProfilePage extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF2563EB),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
               
               Container(
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FA),
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                 ),
-                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
                     _buildInfoRow(
@@ -127,7 +148,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
               //  Contact Information Section
               const Align(
@@ -137,23 +158,32 @@ class ProfilePage extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF2563EB),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
 
               Container(
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FA),
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                 ),
-                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
                     _buildInfoRow(
                       icon: Icons.email,
                       label: 'البريد الإلكتروني',
+                      // 🔧 EDITED: Changed to Gmail
                       value: 'example@gmail.com',
                       hasVerification: true,
                     ),
@@ -161,13 +191,14 @@ class ProfilePage extends StatelessWidget {
                     _buildInfoRow(
                       icon: Icons.phone,
                       label: 'الهاتف',
+                      // 🔧 EDITED: Changed to Algerian number format (reversed for RTL)
                       value: '456 123 555 213+',
                       hasVerification: true,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
               //  Address Section
               const Align(
@@ -177,18 +208,26 @@ class ProfilePage extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Cairo',
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF2563EB),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
 
               Container(
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FA),
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                 ),
-                padding: const EdgeInsets.all(16),
                 child: _buildInfoRow(
                   icon: Icons.location_on,
                   label: 'العنوان المسجل',
@@ -212,18 +251,19 @@ class ProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.all(8),
+          width: 48,
+          height: 48,
           decoration: BoxDecoration(
-            color: const Color(0xFF2563EB).withOpacity(0.1),
-            borderRadius: BorderRadius.circular(8),
+            color: const Color(0xFF2563EB).withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(
             icon,
-            size: 20,
+            size: 24,
             color: const Color(0xFF2563EB),
           ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,7 +273,8 @@ class ProfilePage extends StatelessWidget {
                 style: const TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 14,
-                  color: Colors.grey,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF6B7280),
                 ),
               ),
               const SizedBox(height: 4),
@@ -244,15 +285,16 @@ class ProfilePage extends StatelessWidget {
                       value,
                       style: const TextStyle(
                         fontFamily: 'Cairo',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xFF111827),
                       ),
                     ),
                   ),
                   if (hasVerification)
                     const Icon(
                       Icons.check_circle,
-                      color: Colors.green,
+                      color: Color(0xFF059669),
                       size: 18,
                     ),
                 ],
