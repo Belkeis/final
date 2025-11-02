@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'online_request_page.dart';
 import 'MyRequiredDocumentsPage.dart';
+import 'tracking_requests.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -173,11 +174,12 @@ class HomePage extends StatelessWidget {
                             Icons.search_rounded,
                             const Color(0xFF8B5CF6),
                             const Color(0xFFEDE9FE),
-                            () {
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(_buildSnackBar('تتبع الطلبات'));
-                            },
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RequestTrackingScreen(),
+                              ),
+                            ),
                           ),
                         ),
                       ],
