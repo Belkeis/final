@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/custom_app_bar.dart';
-import 'MyRequiredDocumentsPage.dart'; // Make sure this import is correct
+import 'MyRequiredDocumentsPage.dart'; 
 
 class BookingPage extends StatelessWidget {
   const BookingPage({super.key});
