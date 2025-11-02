@@ -8,24 +8,29 @@ class BookingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.rtl, // Page stays RTL
       child: Scaffold(
-        //  CustomAppBar
-        appBar: CustomAppBar(
-          onArrowTap: () {
-            // Navigate back or to home
-            Navigator.pop(context);
-          },
+        // CustomAppBar 
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: Directionality(
+            textDirection:
+                TextDirection.ltr, 
+            child: CustomAppBar(
+              onArrowTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
         ),
-
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // 🟦 Circle Icon
+              //  Circle Icon
               Container(
-               width: 80,
+                width: 80,
                 height: 80,
                 decoration: const BoxDecoration(
                   color: Color(0xFF3B82F6),
