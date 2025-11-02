@@ -12,6 +12,7 @@ import 'screens/entering.dart';
 import 'screens/sign_up.dart';
 import 'screens/after_req.dart';
 import 'screens/notifications_page.dart';
+import 'screens/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/sign_up' :(context) =>const SignUpPage(),
         '/after_req' :(context) =>const AfterReq(),
         '/notifications' :(context) =>const NotificationsPage(),
+        '/profile': (context) => const ProfilePage(),
 
       },
     );
