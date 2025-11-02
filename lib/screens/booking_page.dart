@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/custom_app_bar.dart';
+import 'MyRequiredDocumentsPage.dart'; // Make sure this import is correct
 
 class BookingPage extends StatelessWidget {
   const BookingPage({super.key});
@@ -14,8 +15,7 @@ class BookingPage extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Directionality(
-            textDirection:
-                TextDirection.ltr, 
+            textDirection: TextDirection.ltr, // Swap positions: icons left, arrow right
             child: CustomAppBar(
               onArrowTap: () {
                 Navigator.pop(context);
@@ -84,18 +84,29 @@ class BookingPage extends StatelessWidget {
               const SizedBox(height: 20),
 
               // 🧾 Service Cards
-              const ServiceCard(
+              ServiceCard(
                 icon: Icons.credit_card,
-                iconColor: Color(0xFF4CAF50),
+                iconColor: const Color(0xFF4CAF50),
                 title: 'الحالة المدنية',
                 subtitle: 'استخراج وثائق الحالة المدنية',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const MyRequiredDocumentsPage(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 10),
-              const ServiceCard(
+              ServiceCard(
                 icon: Icons.fingerprint,
-                iconColor: Color(0xFF3F51B5),
+                iconColor: const Color(0xFF3F51B5),
                 title: 'المصالح البيومترية',
                 subtitle: 'خدمات البصمة والبيانات البيومترية',
+                onTap: () {
+                  // Optional: add navigation or action
+                },
               ),
               const SizedBox(height: 10),
               ServiceCard(
@@ -107,6 +118,9 @@ class BookingPage extends StatelessWidget {
                 iconColor: const Color(0xFFFF9800),
                 title: 'الاستلام',
                 subtitle: 'استلام الوثائق الجاهزة',
+                onTap: () {
+                  // Optional: add navigation or action
+                },
               ),
             ],
           ),
@@ -122,6 +136,7 @@ class ServiceCard extends StatelessWidget {
   final Color iconColor;
   final String title;
   final String subtitle;
+  final VoidCallback? onTap; // <-- added
 
   const ServiceCard({
     super.key,
@@ -130,64 +145,68 @@ class ServiceCard extends StatelessWidget {
     required this.iconColor,
     required this.title,
     required this.subtitle,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade100,
-            blurRadius: 4,
-            spreadRadius: 1,
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      child: Row(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: iconColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: iconWidget ?? Icon(icon, color: iconColor, size: 24),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontFamily: 'Cairo',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      subtitle,
-                      style: const TextStyle(
-                        fontFamily: 'Cairo',
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade300),
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade100,
+              blurRadius: 4,
+              spreadRadius: 1,
             ),
-          ),
-          Radio(value: false, groupValue: true, onChanged: (_) {}),
-        ],
+          ],
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: iconColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: iconWidget ?? Icon(icon, color: iconColor, size: 24),
+                  ),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontFamily: 'Cairo',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        subtitle,
+                        style: const TextStyle(
+                          fontFamily: 'Cairo',
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Radio(value: false, groupValue: true, onChanged: (_) {}),
+          ],
+        ),
       ),
     );
   }
