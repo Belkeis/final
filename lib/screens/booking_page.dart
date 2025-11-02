@@ -172,7 +172,7 @@ class ServiceCard extends StatelessWidget {
                       subtitle,
                       style: const TextStyle(
                         fontFamily: 'Cairo',
-                        fontSize: 13,
+                        fontSize: 14,
                         color: Colors.grey,
                       ),
                     ),
