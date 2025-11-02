@@ -9,20 +9,6 @@ class RequestTrackingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF9FAFB),
       appBar: CustomAppBar(
-        onNotificationTap: () {
-          // Navigate to notifications screen
-          // Navigator.pushNamed(context, '/notifications');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Notifications tapped')),
-          );
-        },
-        onProfileTap: () {
-          // Navigate to profile screen
-          // Navigator.pushNamed(context, '/profile');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Profile tapped')),
-          );
-        },
         onArrowTap: () {
           // Navigate back or to home
           Navigator.pop(context);
@@ -89,8 +75,7 @@ class RequestTrackingScreen extends StatelessWidget {
                   height: 56,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigate to new request screen
-                      // Navigator.pushNamed(context, '/new-request');
+                      Navigator.pushNamed(context, '/online-requests');
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('New request tapped')),
                       );
