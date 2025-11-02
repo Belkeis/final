@@ -17,16 +17,7 @@ class BookingPage extends StatelessWidget {
           child: CustomAppBar(
             title: 'احجز موعدك',
             onArrowTap: () => Navigator.pop(context),
-            onProfileTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Profile tapped')),
-              );
-            },
-            onNotificationTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Notifications tapped')),
-              );
-            },
+            
           ),
         ),
         body: SingleChildScrollView(
