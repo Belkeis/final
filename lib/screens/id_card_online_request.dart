@@ -1,14 +1,95 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
+import 'after_req.dart';
 
 class IdRequest extends StatefulWidget {
-  const IdRequest({Key? key}) : super(key: key);
+  const IdRequest({super.key});
 
   @override
-  State<IdRequest> createState() => _State();
+  State<IdRequest> createState() => _IdRequestState();
 }
 
-class _State extends State<IdRequest> {
+class _IdRequestState extends State<IdRequest> {
+  void _showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha:0.3),
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+          child: Dialog(
+            elevation: 0,
+            backgroundColor: Colors.white,
+            insetPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    "تأكيد البيانات الشخصية",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2563EB),
+                      fontFamily: 'Cairo',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "يرجى مراجعة معلوماتك لتأكيد هويتك واستكمال الطلب بسهولة.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black87,
+                      height: 1.5,
+                      fontFamily: 'Cairo',
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      _InfoRow("الاسم الكامل:", "أحمد بن يوسف"),
+                      _InfoRow("تاريخ الميلاد:", "15/06/2000"),
+                      _InfoRow("العنوان:", "ولاية الجزائر، بلدية باب الزوار"),
+                      _InfoRow("رقم الهاتف:", "0555 12 34 56"),
+                      _InfoRow("البريد الإلكتروني:", "ahmed.benyoussef@email.com"),
+                    ],
+                  ),
+                  const SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _ActionButton(
+                        text: "إلغاء",
+                        textColor: Colors.black87,
+                        background: Colors.white,
+                        shadow: true,
+                        isConfirm: false,
+                      ),
+                      SizedBox(width: 16),
+                      _ActionButton(
+                        text: "تأكيد المعلومات",
+                        textColor: Colors.white,
+                        background: Color(0xFF2563EB),
+                        isConfirm: true,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,14 +217,7 @@ class _State extends State<IdRequest> {
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('تم إرسال الطلب بنجاح'),
-                      backgroundColor: Colors.green,
-                    ),
-                  );
-                },
+                onPressed: () => _showConfirmationDialog(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF00D26A),
                   shape: RoundedRectangleBorder(
@@ -207,3 +281,89 @@ class _State extends State<IdRequest> {
     );
   }
 }
+
+class _InfoRow extends StatelessWidget {
+  final String label;
+  final String value;
+  const _InfoRow(this.label, this.value);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: RichText(
+        text: TextSpan(
+          style: const TextStyle(
+            fontFamily: 'Cairo',
+            fontSize: 14,
+            color: Colors.black87,
+          ),
+          children: [
+            TextSpan(
+              text: "$label ",
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            TextSpan(text: value),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  final String text;
+  final Color textColor;
+  final Color background;
+  final bool isConfirm;
+  final bool shadow;
+
+  const _ActionButton({
+    required this.text,
+    required this.textColor,
+    required this.background,
+    required this.isConfirm,
+    this.shadow = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        if (isConfirm) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AfterReq()),
+          );
+        }
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+        decoration: BoxDecoration(
+          color: background,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: shadow
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha:0.08),
+                    blurRadius: 6,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : [],
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Cairo',
+          ),
+        ),
+      ),
+    );
+  }
+  }

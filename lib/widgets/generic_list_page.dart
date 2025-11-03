@@ -24,148 +24,172 @@ class GenericListPage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF9F9F9),
+        backgroundColor: const Color(0xFFF9FAFB),
         appBar: customAppBar,
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 25),
-          child: ListView(
-            children: [
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Cairo',
-                  color: Color(0xFF3F76ED),
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                subtitle,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade700,
-                  fontFamily: 'Cairo',
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              // Search bar
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  height: 36,
-                  width: 340,
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.grey.shade400, width: 1.2),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xFFE5E7EB),
-                        blurRadius: 6,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: const Center(
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      style: TextStyle(fontSize: 14),
-                      decoration: InputDecoration(
-                        isCollapsed: true,
-                        contentPadding: EdgeInsets.only(bottom: 1),
-                        hintText: 'ابحث...',
-                         hintStyle: TextStyle(color: Color(0xFFA0A0A0), fontSize: 14),
-                        border: InputBorder.none,
-                        icon: Icon(Icons.search, color: Color(0xFF6B7280), size: 20),
-                      ),
-                    ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
+            child: Column(
+              children: [
+                // Header Section
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Cairo',
+                    color: Color(0xFF2563EB),
                   ),
                 ),
-              ),
-              const SizedBox(height: 40),
+                const SizedBox(height: 8),
+                Text(
+                  subtitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF6B7280),
+                    fontFamily: 'Cairo',
+                    height: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 24),
 
-              // List of items
-              ...items.map(
-                (item) => Container(
-                  height: 70,
-                  margin: const EdgeInsets.only(bottom: 12),
+                // Search bar
+                Container(
+                  height: 44,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: const [
+                    border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
+                    boxShadow: [
                       BoxShadow(
-                        color: Color(0xFFE5E7EB),
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
+                        color: Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
-                  child: ListTile(
-                    onTap: item.onTap,
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 4,
-                    ),
-                    leading: item.icon != null
-                        ? FaIcon(
-                            item.icon,
-                            color: item.iconColor ?? const Color(0xFF2563EB),
-                          )
-                        : null,
-                    title: Text(
-                      item.title,
-                      style: const TextStyle(
-                        fontFamily: 'Cairo',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    subtitle: item.subtitle != null
-                        ? Text(
-                            item.subtitle!,
-                            style: const TextStyle(
+                  child: const Row(
+                    children: [
+                      Icon(Icons.search, color: Color(0xFF6B7280), size: 20),
+                      SizedBox(width: 12),
+                      Expanded(
+                        child: TextField(
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Cairo',
+                            color: Color(0xFF111827),
+                          ),
+                          decoration: InputDecoration(
+                            hintText: 'ابحث...',
+                            hintStyle: TextStyle(
+                              color: Color(0xFF9CA3AF),
+                              fontSize: 14,
                               fontFamily: 'Cairo',
-                              color: Colors.grey,
-                              fontSize: 13,
                             ),
-                          )
-                        : null,
-                    trailing: showDownloadIcon
-                        ? SizedBox(
-                            width: 55,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
-                                FaIcon(
-                                  FontAwesomeIcons.filePdf,
-                                  color: Colors.redAccent,
-                                  size: 18,
-                                ),
-                                SizedBox(width: 10),
-                                FaIcon(
-                                  FontAwesomeIcons.download,
-                                  color: Color(0xFF4B5564),
-                                  size: 18,
-                                ),
-                              ],
-                            ),
-                          )
-                        : showTrailingArrow
-                        ? const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                            color: Colors.grey,
-                          )
-                        : null,
+                            border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 24),
+
+                // List of items
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).padding.bottom + 16,
+                    ),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.04),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: ListTile(
+                          onTap: item.onTap,
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 8,
+                          ),
+                          leading: item.icon != null
+                              ? FaIcon(
+                                  item.icon,
+                                  color: item.iconColor ?? const Color(0xFF2563EB),
+                                  size: 20,
+                                )
+                              : null,
+                          title: Text(
+                            item.title,
+                            style: const TextStyle(
+                              fontFamily: 'Cairo',
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xFF111827),
+                            ),
+                          ),
+                          subtitle: item.subtitle != null
+                              ? Text(
+                                  item.subtitle!,
+                                  style: const TextStyle(
+                                    fontFamily: 'Cairo',
+                                    color: Color(0xFF6B7280),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                )
+                              : null,
+                          trailing: showDownloadIcon
+                              ? SizedBox(
+                                  width: 55,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: const [
+                                      FaIcon(
+                                        FontAwesomeIcons.filePdf,
+                                        color: Colors.redAccent,
+                                        size: 18,
+                                      ),
+                                      SizedBox(width: 10),
+                                      FaIcon(
+                                        FontAwesomeIcons.download,
+                                        color: Color(0xFF6B7280),
+                                        size: 18,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : showTrailingArrow
+                              ? const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 16,
+                                  color: Color(0xFF6B7280),
+                                )
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

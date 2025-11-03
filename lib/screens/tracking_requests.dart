@@ -76,9 +76,6 @@ class RequestTrackingScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/online-requests');
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('New request tapped')),
-                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF2563EB),

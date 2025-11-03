@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // updated import
+import 'package:flutter_svg/flutter_svg.dart';
+import 'home_page.dart';
 
 class Entering extends StatefulWidget {
   const Entering({super.key});
@@ -9,7 +10,7 @@ class Entering extends StatefulWidget {
 }
 
 class _EnteringState extends State<Entering> {
-  bool _isHovered = false; // for hover effect
+  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,56 +18,61 @@ class _EnteringState extends State<Entering> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 80), // small top padding
+            const SizedBox(height: 60),
 
-            // Centered logo
-            Center(
-              child: Image.asset(
-                'assets/images/logo.png',
-                width: 220,
-                height: 220,
-                fit: BoxFit.contain,
+            // Centered SVG logo
+            Expanded(
+              child: Center(
+                child: SvgPicture.asset(
+                  'assets/images/logo.svg',
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
 
             // Bottom button
             Padding(
-              padding: const EdgeInsets.only(bottom: 40.0),
-              child: MouseRegion(
-                onEnter: (_) => setState(() => _isHovered = true),
-                onExit: (_) => setState(() => _isHovered = false),
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    );
-                  },
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    width: 160,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: _isHovered
-                          ? const Color(0xFF2563EB)
-                          : Colors.transparent,
-                      border: Border.all(color: const Color(0xFF2563EB), width: 3),
-                      borderRadius: BorderRadius.circular(13),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'ابدأ الآن',
-                        style: TextStyle(
-                          fontFamily: 'Cairo',
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color:
-                              _isHovered ? Colors.white : const Color(0xFF2563EB),
-                        ),
+              padding: const EdgeInsets.only(bottom: 60.0),
+              child: GestureDetector(
+                onTapDown: (_) => setState(() => _isPressed = true),
+                onTapUp: (_) => setState(() => _isPressed = false),
+                onTapCancel: () => setState(() => _isPressed = false),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 150),
+                  width: 160,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: _isPressed
+                        ? const Color(0xFF1D4ED8)
+                        : const Color(0xFF2563EB),
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF2563EB).withValues(alpha: 0.3),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'ابدأ الآن',
+                      style: TextStyle(
+                        fontFamily: 'Cairo',
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white,
                       ),
                     ),
                   ),

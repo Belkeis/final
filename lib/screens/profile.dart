@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,7 +8,7 @@ class ProfilePage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: Color(0xFFF9FAFB),
+        backgroundColor: const Color(0xFFF9FAFB),
         //  AppBar
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(76),
@@ -26,29 +25,29 @@ class ProfilePage extends StatelessWidget {
             child: Stack(
               children: [
                 //  "تعديل" on LEFT
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
+                  child: Text(
                     'تعديل',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Cairo',
                       fontSize: 16,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ),
 
                 //  Profile title in CENTER
-                Align(
+                const Align(
                   alignment: Alignment.center,
-                  child: const Text(
+                  child: Text(
                     'الملف الشخصي',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Cairo',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ),
@@ -73,13 +72,18 @@ class ProfilePage extends StatelessWidget {
         ),
 
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(25),
+          padding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 25,
+            bottom: MediaQuery.of(context).padding.bottom + 25,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               //  User Picture
-              CircleAvatar(
-                radius: 50,
+              const CircleAvatar(
+                radius: 48,
                 backgroundImage: AssetImage('assets/images/user.png'),
               ),
               const SizedBox(height: 12),
@@ -94,7 +98,7 @@ class ProfilePage extends StatelessWidget {
                   color: Color(0xFF111827),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 32),
 
               //  Personal Details Section
               const Align(
@@ -103,16 +107,16 @@ class ProfilePage extends StatelessWidget {
                   'المعلومات الشخصية',
                   style: TextStyle(
                     fontFamily: 'Cairo',
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF2563EB),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF111827),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
 
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -120,7 +124,7 @@ class ProfilePage extends StatelessWidget {
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.04),
                       blurRadius: 8,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -131,7 +135,10 @@ class ProfilePage extends StatelessWidget {
                       label: 'رقم الهوية',
                       value: '****-****-1234',
                     ),
-                    const SizedBox(height: 12),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Divider(height: 1, color: Color(0xFFE5E7EB)),
+                    ),
                     _buildInfoRow(
                       icon: Icons.cake,
                       label: 'تاريخ الميلاد',
@@ -149,16 +156,16 @@ class ProfilePage extends StatelessWidget {
                   'معلومات الاتصال',
                   style: TextStyle(
                     fontFamily: 'Cairo',
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF2563EB),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF111827),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
 
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -166,7 +173,7 @@ class ProfilePage extends StatelessWidget {
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.04),
                       blurRadius: 8,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -178,7 +185,10 @@ class ProfilePage extends StatelessWidget {
                       value: 'example@gmail.com',
                       hasVerification: true,
                     ),
-                    const SizedBox(height: 12),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Divider(height: 1, color: Color(0xFFE5E7EB)),
+                    ),
                     _buildInfoRow(
                       icon: Icons.phone,
                       label: 'الهاتف',
@@ -197,16 +207,16 @@ class ProfilePage extends StatelessWidget {
                   'العنوان',
                   style: TextStyle(
                     fontFamily: 'Cairo',
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF2563EB),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF111827),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
 
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -214,7 +224,7 @@ class ProfilePage extends StatelessWidget {
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.04),
                       blurRadius: 8,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -241,19 +251,19 @@ class ProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 48,
-          height: 48,
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
             color: const Color(0xFF2563EB).withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(
             icon,
-            size: 24,
+            size: 20,
             color: const Color(0xFF2563EB),
           ),
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 14),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,8 +272,8 @@ class ProfilePage extends StatelessWidget {
                 label,
                 style: const TextStyle(
                   fontFamily: 'Cairo',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  fontWeight: FontWeight.normal,
                   color: Color(0xFF6B7280),
                 ),
               ),
@@ -275,7 +285,7 @@ class ProfilePage extends StatelessWidget {
                       value,
                       style: const TextStyle(
                         fontFamily: 'Cairo',
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.normal,
                         color: Color(0xFF111827),
                       ),

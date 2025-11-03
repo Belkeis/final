@@ -6,9 +6,10 @@ import 'profile.dart';
 import 'notifications_page.dart';
 import 'tracking_requests.dart';
 import 'booking_page.dart';
+import 'digital_versions_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,24 +48,17 @@ class HomePage extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: SvgPicture.asset(
-                                'assets/icons/profile.svg',
-                                width: 26,
-                                height: 26,
-                                colorFilter: const ColorFilter.mode(
-                                  Colors.white,
-                                  BlendMode.srcIn,
-                                ),
+                            child: SvgPicture.asset(
+                              'assets/icons/profile.svg',
+                              width: 26,
+                              height: 26,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcIn,
                               ),
                             ),
                           ),
-                          const SizedBox(width: 12),
+                          const SizedBox(width: 16),
                           // Notification icon (SVG)
                           GestureDetector(
                             onTap: () {
@@ -76,49 +70,42 @@ class HomePage extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Stack(
-                                clipBehavior: Clip.none,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/notification.svg',
-                                    width: 17,
-                                    height: 20,
-                                    colorFilter: const ColorFilter.mode(
-                                      Colors.white,
-                                      BlendMode.srcIn,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/icons/notification.svg',
+                                  width: 17,
+                                  height: 20,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.white,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: -2,
+                                  right: -2,
+                                  child: Container(
+                                    width: 8,
+                                    height: 8,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFEF4444),
+                                      shape: BoxShape.circle,
                                     ),
                                   ),
-                                  Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: Container(
-                                      width: 8,
-                                      height: 8,
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xFFEF4444),
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 30),
                       const Text(
                         'مرحبا بك في البلدية الرقمية ',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
                           fontFamily: 'Cairo',
                         ),
                       ),
@@ -157,11 +144,13 @@ class HomePage extends StatelessWidget {
                             Icons.picture_as_pdf_rounded,
                             const Color(0xFF10B981),
                             const Color(0xFFD1FAE5),
-                            () {
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(_buildSnackBar('الوثائق الرقمية'));
-                            },
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const DigitalVersionsPage(),
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -279,7 +268,7 @@ class HomePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.15),
+              color: Colors.grey.withValues(alpha: 0.2),
               blurRadius: 8,
               offset: const Offset(0, 3),
             ),
@@ -312,22 +301,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  SnackBar _buildSnackBar(String message) {
-    return SnackBar(
-      content: Text(
-        message,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 16, fontFamily: 'Cairo'),
-      ),
-      backgroundColor: const Color(0xFF2563EB),
-      behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.all(20),
-    );
-  }
 }
 
-// 🔵 Top smooth wave curve
+
 class TopWaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
 
 class RequiredDocumentsPage extends StatelessWidget {
-  const RequiredDocumentsPage({Key? key}) : super(key: key);
+  const RequiredDocumentsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

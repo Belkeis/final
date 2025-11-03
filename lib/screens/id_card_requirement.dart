@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
 
 class IdRequirements extends StatelessWidget {
-  const IdRequirements({Key? key}) : super(key: key);
+  const IdRequirements({super.key});
 
   @override
   Widget build(BuildContext context) {

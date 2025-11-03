@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF9FAFB),
         fontFamily: 'Cairo',
       ),
-      initialRoute: '/home',
+      initialRoute: '/entering',
       routes: {
         '/home': (context) => const HomePage(),
         '/tracking': (context) => const RequestTrackingScreen(),

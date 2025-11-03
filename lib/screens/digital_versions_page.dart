@@ -15,32 +15,8 @@ class DigitalVersionsPage extends StatelessWidget {
         },
       ),
       body: GenericListPage(
-        //  Custom App Bar
-        customAppBar: PreferredSize(
-          preferredSize: const Size.fromHeight(76),
-          child: Directionality(
-            textDirection: TextDirection.ltr, // keep icons LTR
-            child: CustomAppBar(
-              onProfileTap: () {
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(const SnackBar(content: Text('الملف الشخصي')));
-              },
-              onNotificationTap: () {
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(const SnackBar(content: Text('الإشعارات')));
-              },
-              onArrowTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-        ),
-
         title: 'الوثائق الرقمية',
-        subtitle:
-            'الوصول إلى جميع الوثائق الرسمية الرقمية بسهولة\nوتنزيلها مباشرة من هذه الصفحة.',
+        subtitle:'الوصول إلى جميع الوثائق الرسمية الرقمية بسهولة وتنزيلها مباشرة من هذه الصفحة',
         showDownloadIcon: true,
         showTrailingArrow: false,
 

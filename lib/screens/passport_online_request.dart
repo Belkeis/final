@@ -1,14 +1,102 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
+import 'after_req.dart';
 
 class onlineRequestPassport extends StatefulWidget {
-  const onlineRequestPassport({Key? key}) : super(key: key);
+  const onlineRequestPassport({super.key});
 
   @override
-  State<onlineRequestPassport> createState() => _State();
+  State<onlineRequestPassport> createState() => _onlineRequestPassportState();
 }
 
-class _State extends State<onlineRequestPassport> {
+class _onlineRequestPassportState extends State<onlineRequestPassport> {
+  void _showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.3),
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Dialog(
+              elevation: 0,
+              backgroundColor: Colors.white,
+              insetPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(22.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "تأكيد البيانات الشخصية",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xFF2563EB),
+                        fontFamily: 'Cairo',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "يرجى مراجعة معلوماتك لتأكيد هويتك واستكمال الطلب بسهولة.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF6B7280),
+                        height: 1.5,
+                        fontFamily: 'Cairo',
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        _InfoRow("الاسم الكامل:", "أحمد بن يوسف"),
+                        _InfoRow("تاريخ الميلاد:", "15/06/2000"),
+                        _InfoRow("العنوان:", "ولاية الجزائر، بلدية باب الزوار"),
+                        _InfoRow("رقم الهاتف:", "0555 12 34 56"),
+                        _InfoRow("البريد الإلكتروني:", "ahmed.benyoussef@email.com"),
+                      ],
+                    ),
+                    const SizedBox(height: 25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: _ActionButton(
+                            text: "تأكيد ",
+                            textColor: Colors.white,
+                            background: Color(0xFF2563EB),
+                            isConfirm: true,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _ActionButton(
+                            text: "إلغاء",
+                            textColor: Color(0xFF6B7280),
+                            background: Colors.white,
+                            shadow: true,
+                            isConfirm: false,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,14 +224,7 @@ class _State extends State<onlineRequestPassport> {
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('تم إرسال الطلب بنجاح'),
-                      backgroundColor: Colors.green,
-                    ),
-                  );
-                },
+                onPressed: () => _showConfirmationDialog(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF00D26A),
                   shape: RoundedRectangleBorder(
@@ -203,6 +284,90 @@ class _State extends State<onlineRequestPassport> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _InfoRow extends StatelessWidget {
+  final String label;
+  final String value;
+  const _InfoRow(this.label, this.value);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: RichText(
+        textDirection: TextDirection.rtl,
+        text: TextSpan(
+          style: const TextStyle(
+            fontFamily: 'Cairo',
+            fontSize: 14,
+            color: Color(0xFF111827),
+          ),
+          children: [
+            TextSpan(
+              text: "$label ",
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            TextSpan(
+              text: value,
+              style: const TextStyle(color: Color(0xFF6B7280)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  final String text;
+  final Color textColor;
+  final Color background;
+  final bool isConfirm;
+  final bool shadow;
+
+  const _ActionButton({
+    required this.text,
+    required this.textColor,
+    required this.background,
+    required this.isConfirm,
+    this.shadow = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 48,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pop(context);
+          if (isConfirm) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AfterReq()),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: background,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: shadow ? BorderSide(color: Color(0xFFE5E7EB), width: 1) : BorderSide.none,
+          ),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            color: textColor,
+            fontFamily: 'Cairo',
+          ),
+        ),
       ),
     );
   }
