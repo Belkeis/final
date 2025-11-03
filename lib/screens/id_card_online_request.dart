@@ -14,74 +14,81 @@ class _IdRequestState extends State<IdRequest> {
   void _showConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
-      barrierColor: Colors.black.withValues(alpha:0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-          child: Dialog(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            insetPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    "تأكيد البيانات الشخصية",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2563EB),
-                      fontFamily: 'Cairo',
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    "يرجى مراجعة معلوماتك لتأكيد هويتك واستكمال الطلب بسهولة.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black87,
-                      height: 1.5,
-                      fontFamily: 'Cairo',
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      _InfoRow("الاسم الكامل:", "أحمد بن يوسف"),
-                      _InfoRow("تاريخ الميلاد:", "15/06/2000"),
-                      _InfoRow("العنوان:", "ولاية الجزائر، بلدية باب الزوار"),
-                      _InfoRow("رقم الهاتف:", "0555 12 34 56"),
-                      _InfoRow("البريد الإلكتروني:", "ahmed.benyoussef@email.com"),
-                    ],
-                  ),
-                  const SizedBox(height: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _ActionButton(
-                        text: "إلغاء",
-                        textColor: Colors.black87,
-                        background: Colors.white,
-                        shadow: true,
-                        isConfirm: false,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Dialog(
+              elevation: 0,
+              backgroundColor: Colors.white,
+              insetPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(22.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "تأكيد البيانات الشخصية",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xFF2563EB),
+                        fontFamily: 'Cairo',
                       ),
-                      SizedBox(width: 16),
-                      _ActionButton(
-                        text: "تأكيد المعلومات",
-                        textColor: Colors.white,
-                        background: Color(0xFF2563EB),
-                        isConfirm: true,
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "يرجى مراجعة معلوماتك لتأكيد هويتك واستكمال الطلب بسهولة.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF6B7280),
+                        height: 1.5,
+                        fontFamily: 'Cairo',
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 18),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        _InfoRow("الاسم الكامل:", "أحمد بن يوسف"),
+                        _InfoRow("تاريخ الميلاد:", "15/06/2000"),
+                        _InfoRow("العنوان:", "ولاية الجزائر، بلدية باب الزوار"),
+                        _InfoRow("رقم الهاتف:", "0555 12 34 56"),
+                        _InfoRow("البريد الإلكتروني:", "ahmed.benyoussef@email.com"),
+                      ],
+                    ),
+                    const SizedBox(height: 25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: _ActionButton(
+                            text: "تأكيد ",
+                            textColor: Colors.white,
+                            background: Color(0xFF2563EB),
+                            isConfirm: true,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _ActionButton(
+                            text: "إلغاء",
+                            textColor: Color(0xFF6B7280),
+                            background: Colors.white,
+                            shadow: true,
+                            isConfirm: false,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -175,24 +182,23 @@ class _IdRequestState extends State<IdRequest> {
                           padding: EdgeInsets.all(20),
                           child: Column(
                             children: [
-                              _buildRequirement('جواز السفر منتهي الصلاحية'),
+                              _buildRequirement('بطاقة التعريف منتهية الصلاحية'),
                               _buildRequirement(
-                                'بطاقة التسجيل الفصلي سارية المفعول',
+                                'استمارة طلب مملوءة وموقعة',
                               ),
-                              _buildRequirement('استمارة طلب مملوءة وموقعة'),
                               _buildRequirement(
                                   'شهادة ميلاد خاصة أصلية ( 12S )'),
                               _buildRequirement(
                                 'إثبات الإقامة القانونية في الجزائر (حال شهادة\nالعمل أو بطاقة الطالب)',
                               ),
                               _buildRequirement(
-                                'أربع صور فوتوغرافية حديثة بحجم 35 × 45 مم',
+                                'صورتان فوتوغرافيتان حديثتان بحجم 35 × 45 مم',
                               ),
                               _buildRequirement(
                                 'نسخة من بطاقة التعريف الوطنية (إذا كانت\nمتوفرة)',
                               ),
                               _buildRequirement(
-                                'إيصال دفع رسوم الجواز (حوالي 6000 دج)',
+                                'إيصال دفع رسوم البطاقة (حوالي 400 دج)',
                               ),
                             ],
                           ),
@@ -292,18 +298,22 @@ class _InfoRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: RichText(
+        textDirection: TextDirection.rtl,
         text: TextSpan(
           style: const TextStyle(
             fontFamily: 'Cairo',
             fontSize: 14,
-            color: Colors.black87,
+            color: Color(0xFF111827),
           ),
           children: [
             TextSpan(
               text: "$label ",
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
-            TextSpan(text: value),
+            TextSpan(
+              text: value,
+              style: const TextStyle(color: Color(0xFF6B7280)),
+            ),
           ],
         ),
       ),
@@ -328,42 +338,36 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.pop(context);
-        if (isConfirm) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const AfterReq()),
-          );
-        }
-      },
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-        decoration: BoxDecoration(
-          color: background,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: shadow
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha:0.08),
-                    blurRadius: 6,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : [],
+    return SizedBox(
+      height: 48,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pop(context);
+          if (isConfirm) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AfterReq()),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: background,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: shadow ? const BorderSide(color: Color(0xFFE5E7EB), width: 1) : BorderSide.none,
+          ),
         ),
         child: Text(
           text,
           style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
             color: textColor,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
             fontFamily: 'Cairo',
           ),
         ),
       ),
     );
   }
-  }
+}
