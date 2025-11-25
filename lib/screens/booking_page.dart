@@ -28,6 +28,21 @@ class BookingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+               Container(
+                width: 80,
+                height: 80,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF3B82F6),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.event_available,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
               // Title
               const Text(
                 'احجز موعدك',
