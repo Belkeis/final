@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         '/after_req': (context) => const AfterReq(),
         '/notifications': (context) => const NotificationsPage(),
         '/profile': (context) => const ProfilePage(),
-        '/online_request_page': (context) => const onlineRequestPassport(),
+        '/online_request_page': (context) => const OnlineRequestPassport(),
         '/id_card_online_request' : (context) => const IdRequest(),
         '/id_card_requirement' : (context) => const IdRequirements(),
   

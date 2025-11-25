@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
 import 'after_req.dart';
 
-class onlineRequestPassport extends StatefulWidget {
-  const onlineRequestPassport({super.key});
+class OnlineRequestPassport extends StatefulWidget {
+  const OnlineRequestPassport({super.key});
 
   @override
-  State<onlineRequestPassport> createState() => _onlineRequestPassportState();
+  State<OnlineRequestPassport> createState() => _OnlineRequestPassportState();
 }
 
-class _onlineRequestPassportState extends State<onlineRequestPassport> {
+class _OnlineRequestPassportState extends State<OnlineRequestPassport> {
   void _showConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
