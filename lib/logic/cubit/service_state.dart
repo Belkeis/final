@@ -23,20 +23,22 @@ class ServiceLoaded extends ServiceState {
 class ServiceDetailsLoaded extends ServiceState {
   final ServiceModel service;
   final List<DocumentModel> requiredDocuments;
+  final List<ServiceModel> allServices; // Keep all services available
 
-  const ServiceDetailsLoaded(this.service, this.requiredDocuments);
+  const ServiceDetailsLoaded(this.service, this.requiredDocuments, this.allServices);
 
   @override
-  List<Object?> get props => [service, requiredDocuments];
+  List<Object?> get props => [service, requiredDocuments, allServices];
 }
 
 class RequiredDocumentsLoaded extends ServiceState {
   final List<DocumentModel> documents;
+  final List<ServiceModel> allServices; // Keep all services available
 
-  const RequiredDocumentsLoaded(this.documents);
+  const RequiredDocumentsLoaded(this.documents, this.allServices);
 
   @override
-  List<Object?> get props => [documents];
+  List<Object?> get props => [documents, allServices];
 }
 
 class ServiceError extends ServiceState {
@@ -47,4 +49,3 @@ class ServiceError extends ServiceState {
   @override
   List<Object?> get props => [message];
 }
-

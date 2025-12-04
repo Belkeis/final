@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'required_documents.dart';
-import 'online_requests.dart';
-import 'profile.dart';
-import 'notifications_page.dart';
-import 'tracking_requests.dart';
-import 'booking_page.dart';
-import 'digital_versions_page.dart';
-import 'my_bookings_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -42,12 +34,8 @@ class HomePage extends StatelessWidget {
                           // Profile icon (SVG)
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const ProfilePage(),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/profile');
+
                             },
                             child: SvgPicture.asset(
                               'assets/icons/profile.svg',
@@ -63,13 +51,8 @@ class HomePage extends StatelessWidget {
                           // Notification icon (SVG)
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const NotificationsPage(),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/notifications');
+
                             },
                             child: Stack(
                               clipBehavior: Clip.none,
@@ -145,13 +128,8 @@ class HomePage extends StatelessWidget {
                             Icons.picture_as_pdf_rounded,
                             const Color(0xFF10B981),
                             const Color(0xFFD1FAE5),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const DigitalVersionsPage(),
-                              ),
-                            ),
+                            () => Navigator.pushNamed(context, '/digital-versions'),
+
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -162,13 +140,7 @@ class HomePage extends StatelessWidget {
                             Icons.language_rounded,
                             const Color(0xFF3B82F6),
                             const Color(0xFFDBEAFE),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const MyOnlineRequestsPage(),
-                              ),
-                            ),
+                            () => Navigator.pushNamed(context, '/online-requests'),
                           ),
                         ),
                       ],
@@ -185,13 +157,7 @@ class HomePage extends StatelessWidget {
                             Icons.folder_open_rounded,
                             const Color(0xFFF59E0B),
                             const Color(0xFFFEF3C7),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const MyRequiredDocumentsPage(),
-                              ),
-                            ),
+                            () => Navigator.pushNamed(context, '/required-document'),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -202,13 +168,7 @@ class HomePage extends StatelessWidget {
                             Icons.search_rounded,
                             const Color(0xFF8B5CF6),
                             const Color(0xFFEDE9FE),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const RequestTrackingScreen(),
-                              ),
-                            ),
+                            () => Navigator.pushNamed(context, '/tracking'),
                           ),
                         ),
                       ],
@@ -225,12 +185,7 @@ class HomePage extends StatelessWidget {
                             Icons.event_note_rounded,
                             const Color(0xFFEC4899),
                             const Color(0xFFFCE7F3),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyBookingsPage(),
-                              ),
-                            ),
+                            () => Navigator.pushNamed(context, '/my-bookings'),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -241,12 +196,7 @@ class HomePage extends StatelessWidget {
                             Icons.calendar_today_rounded,
                             const Color(0xFF2563EB),
                             const Color(0xFFDBEAFE),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BookingPage(),
-                              ),
-                            ),
+                            () => Navigator.pushNamed(context, '/booking'),
                           ),
                         ),
                       ],

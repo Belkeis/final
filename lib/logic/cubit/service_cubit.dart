@@ -8,6 +8,7 @@ part 'service_state.dart';
 
 class ServiceCubit extends Cubit<ServiceState> {
   final ServiceRepository _serviceRepository;
+  List<ServiceModel>? _cachedServices; // Cache services
 
   ServiceCubit(this._serviceRepository) : super(ServiceInitial()) {
     loadServices();
@@ -17,6 +18,7 @@ class ServiceCubit extends Cubit<ServiceState> {
     emit(ServiceLoading());
     try {
       final services = await _serviceRepository.getAllServices();
+      _cachedServices = services; // Cache the services
       emit(ServiceLoaded(services));
     } catch (e) {
       emit(ServiceError('حدث خطأ أثناء تحميل الخدمات'));
@@ -29,7 +31,8 @@ class ServiceCubit extends Cubit<ServiceState> {
       final service = await _serviceRepository.getServiceById(serviceId);
       if (service != null) {
         final documents = await _serviceRepository.getRequiredDocuments(serviceId);
-        emit(ServiceDetailsLoaded(service, documents));
+        // Pass cached services along with details
+        emit(ServiceDetailsLoaded(service, documents, _cachedServices ?? []));
       } else {
         emit(ServiceError('الخدمة غير موجودة'));
       }
@@ -41,10 +44,9 @@ class ServiceCubit extends Cubit<ServiceState> {
   Future<void> loadRequiredDocuments(int serviceId) async {
     try {
       final documents = await _serviceRepository.getRequiredDocuments(serviceId);
-      emit(RequiredDocumentsLoaded(documents));
+      emit(RequiredDocumentsLoaded(documents, _cachedServices ?? []));
     } catch (e) {
       emit(ServiceError('حدث خطأ أثناء تحميل الوثائق المطلوبة'));
     }
   }
 }
-

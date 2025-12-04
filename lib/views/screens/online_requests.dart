@@ -11,11 +11,6 @@ class MyOnlineRequestsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Reload services when screen appears
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ServiceCubit>().loadServices();
-    });
-
     return BlocBuilder<ServiceCubit, ServiceState>(
       builder: (context, state) {
         if (state is ServiceLoading) {
@@ -54,9 +49,14 @@ class MyOnlineRequestsPage extends StatelessWidget {
           );
         }
 
+        // Extract services from any state that has them
         List<ServiceModel> services = [];
         if (state is ServiceLoaded) {
           services = state.services;
+        } else if (state is ServiceDetailsLoaded) {
+          services = state.allServices; // Use cached services
+        } else if (state is RequiredDocumentsLoaded) {
+          services = state.allServices; // Use cached services
         }
 
         return Directionality(

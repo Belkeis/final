@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../data/repo/request_repository.dart';
 import '../../data/models/request_model.dart';
-import '../../data/models/service_model.dart';
 
 part 'request_state.dart';
 

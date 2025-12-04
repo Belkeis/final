@@ -1,6 +1,5 @@
 import '../database/database_helper.dart';
 import '../models/digital_document_model.dart';
-import '../models/service_model.dart';
 
 class DocumentRepository {
   final DatabaseHelper _dbHelper = DatabaseHelper.instance;

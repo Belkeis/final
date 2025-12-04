@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../data/repo/document_repository.dart';
 import '../../data/models/digital_document_model.dart';
-import '../../data/models/service_model.dart';
 
 part 'document_state.dart';
 
