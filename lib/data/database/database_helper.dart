@@ -6,7 +6,6 @@ import '../models/request_model.dart';
 import '../models/document_model.dart';
 import '../models/digital_document_model.dart';
 import '../models/notification_model.dart';
-import '../models/service_requirement_model.dart';
 import '../models/booking_model.dart';
 
 class DatabaseHelper {

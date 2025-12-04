@@ -35,7 +35,6 @@ class _EnteringState extends State<Entering> {
         );
       } else {
         // If login fails, still navigate to home (guest mode)
-        // In a real app, you might want to show an error
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomePage()),

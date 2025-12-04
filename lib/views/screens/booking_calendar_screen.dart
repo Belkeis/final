@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import '../../logic/cubit/booking_cubit.dart';
 import '../../logic/cubit/auth_cubit.dart';
 import '../../data/models/booking_model.dart';

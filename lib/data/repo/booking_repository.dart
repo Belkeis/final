@@ -1,6 +1,5 @@
 import '../database/database_helper.dart';
 import '../models/booking_model.dart';
-import '../models/service_model.dart';
 
 class BookingRepository {
   final DatabaseHelper _dbHelper = DatabaseHelper.instance;

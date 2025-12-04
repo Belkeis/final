@@ -11,10 +11,7 @@ import '../views/screens/digital_versions_page.dart';
 import '../views/screens/tracking_requests.dart';
 import '../views/screens/booking_page.dart';
 import '../views/screens/booking_calendar_screen.dart';
-
 import '../views/screens/after_req.dart';
-import '../views/screens/service_details_screen.dart';
-import '../views/screens/service_requirements_screen.dart';
 import '../views/screens/my_bookings_page.dart';
 
 class AppRoutes {
@@ -29,10 +26,6 @@ class AppRoutes {
   static const String tracking = '/tracking';
   static const String booking = '/booking';
   static const String bookingCalendar = '/booking-calendar';
-  static const String passportOnlineRequest = '/passport-online-request';
-  static const String passportRequirement = '/passport-requirement';
-  static const String idCardOnlineRequest = '/id-card-online-request';
-  static const String idCardRequirement = '/id-card-requirement';
   static const String afterRequest = '/after-request';
   static const String myBookings = '/my-bookings';
 
