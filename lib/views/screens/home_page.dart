@@ -35,7 +35,6 @@ class HomePage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, '/profile');
-
                             },
                             child: SvgPicture.asset(
                               'assets/icons/profile.svg',
@@ -52,7 +51,6 @@ class HomePage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, '/notifications');
-
                             },
                             child: Stack(
                               clipBehavior: Clip.none,
@@ -105,7 +103,7 @@ class HomePage extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFFF9FAFB),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
@@ -126,10 +124,8 @@ class HomePage extends StatelessWidget {
                             context,
                             'الوثائق الرقمية',
                             Icons.picture_as_pdf_rounded,
-                            const Color(0xFF10B981),
-                            const Color(0xFFD1FAE5),
-                            () => Navigator.pushNamed(context, '/digital-versions'),
-
+                            () => Navigator.pushNamed(
+                                context, '/digital-versions'),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -138,9 +134,8 @@ class HomePage extends StatelessWidget {
                             context,
                             'طلبات عبر الإنترنت',
                             Icons.language_rounded,
-                            const Color(0xFF3B82F6),
-                            const Color(0xFFDBEAFE),
-                            () => Navigator.pushNamed(context, '/online-requests'),
+                            () => Navigator.pushNamed(
+                                context, '/online-requests'),
                           ),
                         ),
                       ],
@@ -155,9 +150,8 @@ class HomePage extends StatelessWidget {
                             context,
                             'الوثائق المطلوبة',
                             Icons.folder_open_rounded,
-                            const Color(0xFFF59E0B),
-                            const Color(0xFFFEF3C7),
-                            () => Navigator.pushNamed(context, '/required-document'),
+                            () => Navigator.pushNamed(
+                                context, '/required-document'),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -166,8 +160,6 @@ class HomePage extends StatelessWidget {
                             context,
                             'تتبع الطلبات',
                             Icons.search_rounded,
-                            const Color(0xFF8B5CF6),
-                            const Color(0xFFEDE9FE),
                             () => Navigator.pushNamed(context, '/tracking'),
                           ),
                         ),
@@ -183,8 +175,6 @@ class HomePage extends StatelessWidget {
                             context,
                             'حجوزاتي',
                             Icons.event_note_rounded,
-                            const Color(0xFFEC4899),
-                            const Color(0xFFFCE7F3),
                             () => Navigator.pushNamed(context, '/my-bookings'),
                           ),
                         ),
@@ -194,8 +184,6 @@ class HomePage extends StatelessWidget {
                             context,
                             'حجز موعد',
                             Icons.calendar_today_rounded,
-                            const Color(0xFF2563EB),
-                            const Color(0xFFDBEAFE),
                             () => Navigator.pushNamed(context, '/booking'),
                           ),
                         ),
@@ -221,8 +209,6 @@ class HomePage extends StatelessWidget {
     BuildContext context,
     String title,
     IconData icon,
-    Color iconColor,
-    Color bgColor,
     VoidCallback onTap,
   ) {
     return GestureDetector(
@@ -243,13 +229,11 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Icon(icon, color: iconColor, size: 28),
+            // Icon directly without background container
+            Icon(
+              icon,
+              color: const Color(0xFF2563EB), // Blue color for all icons
+              size: 40,
             ),
             const SizedBox(height: 10),
             Text(
@@ -266,9 +250,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
 }
-
 
 class TopWaveClipper extends CustomClipper<Path> {
   @override
