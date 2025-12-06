@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../logic/cubit/service_cubit.dart';
 import '../../data/models/service_model.dart';
 import '../widgets/custom_app_bar.dart';
@@ -128,87 +127,43 @@ class MyOnlineRequestsPage extends StatelessWidget {
   }
 
   Widget _buildServiceCard(
-    BuildContext context, {
-    required ServiceModel service,
-    required VoidCallback onTap,
-  }) {
-    // Map service names to icons
-    IconData icon = Icons.description;
-    Color iconColor = const Color(0xFF2563EB);
-    Color iconBgColor = const Color(0xFFDBEAFE);
-
-    if (service.name.contains('بطاقة') || service.name.contains('هوية')) {
-      icon = FontAwesomeIcons.idCard;
-      iconColor = const Color(0xFF0381FF);
-      iconBgColor = const Color(0xFFDEEAFF);
-    } else if (service.name.contains('جواز')) {
-      icon = FontAwesomeIcons.passport;
-      iconColor = const Color(0xFF0DA839);
-      iconBgColor = const Color(0xFFD1FAE5);
-    } else if (service.name.contains('ميلاد')) {
-      icon = FontAwesomeIcons.certificate;
-      iconColor = const Color(0xFF9C27B0);
-      iconBgColor = const Color(0xFFF3E5F5);
-    } else if (service.name.contains('زواج')) {
-      icon = FontAwesomeIcons.heart;
-      iconColor = const Color(0xFFE03CBC);
-      iconBgColor = const Color(0xFFFCE4EC);
-    } else if (service.name.contains('إقامة')) {
-      icon = FontAwesomeIcons.house;
-      iconColor = const Color(0xFFDF6F1A);
-      iconBgColor = const Color(0xFFFEF3C7);
-    }
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: iconBgColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: FaIcon(icon, color: iconColor, size: 22),
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Text(
-                service.name,
-                style: const TextStyle(
-                  fontFamily: 'Cairo',
-                  fontSize: 17,
-                  fontWeight: FontWeight.normal,
-                  color: Color(0xFF111827),
-                ),
-                textAlign: TextAlign.right,
-              ),
-            ),
-            const Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xFF9CA3AF),
-              size: 16,
-            ),
-          ],
-        ),
+  BuildContext context, {
+  required ServiceModel service,
+  required VoidCallback onTap,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-    );
-  }
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              service.name,
+              style: const TextStyle(
+                fontFamily: 'Cairo',
+                fontSize: 17,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF111827),
+              ),
+              textAlign: TextAlign.right,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 }
